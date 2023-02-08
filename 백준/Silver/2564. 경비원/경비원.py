@@ -1,103 +1,58 @@
-width, height = map(int, input().split()) # 가로, 세로
+# [1] (0,0) 기준으로 거리 구하는 함수 만들기
+def lth(drt, x):
+    if drt == 1:
+        return x
+    elif drt == 3:
+        return x
+    elif drt == 2:
+        return height + x
+    else:
+        return width + x
+
+
+# [2] 초기 설정
+width, height = map(int, input().split())  # 가로, 세로
 n = int(input())
 arr = [list(map(int, input().split())) for _ in range(n)]
-dr, x = map(int, input().split()) # 경비원의 방향, 위치
-total_length = 2*(width + height) # 전체 둘레
+dr, cx = map(int, input().split())  # 경비원의 방향, 위치
+total_length = 2 * (width + height)  # 전체 둘레
 
-total_cnt = 0
+
+a_length = lth(dr, cx)
+ans = 0
 for lst in arr:
     ndr = lst[0]
     nx = lst[1]
 
-    cnt = 0
-    if dr == 2:
-        if ndr == 2: # 같은 방향 일 때
-            if x > nx:
-                cnt += x - nx
-            else:
-                cnt += nx - x
-
-        if ndr == 3:
-            if x + height - nx < total_length - (x + height - nx):
-                cnt += x + height - nx
-            else:
-                cnt += total_length - (x + height - nx)
-        if ndr == 1:
-            if x + height + nx < total_length - (x + height + nx):
-                cnt += x + height + nx
-            else:
-                cnt += total_length - (x + height + nx)
-        if ndr == 4:
-            if width - x + height - nx < total_length - (width - x + height - nx):
-                cnt += width - x + height - nx
-            else:
-                cnt += total_length - (width - x + height - nx)
-
-    if dr == 3:
-        if ndr == 3: # 같은 방향 일 때
-            if x > nx:
-                cnt += x - nx
-            else:
-                cnt += nx - x
-        if ndr == 1:
-            if x + nx < total_length - (x + nx):
-                cnt += x + nx
-            else:
-                cnt += total_length - (x + nx)
-        if ndr == 4:
-            if x + width + nx < total_length - (x + width + nx ):
-                cnt += x + width + nx
-            else:
-                cnt += total_length - (x + width + nx )
-        if ndr == 2:
-            if height - x + nx < total_length - (height - x + nx):
-                cnt += height - x + nx
-            else:
-                cnt += total_length - (height - x + nx)
-    if dr == 4:
-        if ndr == 4: # 같은 방향 일 때
-            if x > nx:
-                cnt += x - nx
-            else:
-                cnt += nx - x
-        if ndr == 2:
-            if height - nx + width - x < total_length - (height - nx + width - x):
-                cnt += height - nx + width - x
-            else:
-                cnt += total_length - (height - nx + width - x)
-        if ndr == 3:
-            if x + width + nx < total_length - (x + width + nx):
-                cnt += x + width + nx
-            else:
-                cnt += total_length - (x + width + nx)
-        if ndr == 1:
-            if width - nx + x < total_length - (width - nx + x ):
-                cnt += width - nx + x
-            else:
-                cnt += total_length - (width - nx + x )
-    if dr == 1:
-        if ndr == 1: # 같은 방향 일 때
-            if x > nx:
-                cnt += x - nx
-            else:
-                cnt += nx - x
-        if ndr == 4:
-            if width - x + nx < total_length - (width - x + nx):
-                cnt += width - x + nx
-            else:
-                cnt += total_length - (width - x + nx)
-        if ndr == 2:
-            if x + height + nx < total_length - (x + height + nx):
-                cnt += x + height + nx
-            else:
-                cnt += total_length - (x + height + nx)
-        if ndr == 3:
-            if x + nx < total_length - (x + nx):
-                cnt += x + nx
-            else:
-                cnt += total_length - (x + nx)
-
-    total_cnt += cnt
+    b_length = lth(ndr, nx)
 
 
-print(total_cnt)
+    if dr == ndr:  # 4 가지
+        if a_length < b_length:
+            ans += b_length - a_length
+        else:
+            ans += a_length - b_length
+    elif dr in [1, 4] and ndr in [2, 3]:  # 4가지
+        length = a_length + b_length
+        if length < total_length - length:
+            ans += length
+        else:
+            ans += total_length - length
+    elif ndr in [1, 4] and dr in [2, 3]:  # 4가지
+        length = a_length + b_length
+        if length < total_length - length:
+            ans += length
+        else:
+            ans += total_length - length
+    elif dr in [1, 4] and ndr in [1, 4]:  # 2가지
+        if a_length < b_length:
+            ans += b_length - a_length
+        else:
+            ans += a_length - b_length
+    elif dr in [2, 3] and ndr in [2, 3]:  # 2 가지
+        if a_length < b_length:
+            ans += b_length - a_length
+        else:
+            ans += a_length - b_length
+
+print(ans)
