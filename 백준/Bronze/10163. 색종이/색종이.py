@@ -10,7 +10,5 @@ for num in range(1,n+1):
 for i in range(1,n+1):
     cnt = 0
     for lst in arr:
-        for ch in lst:
-            if ch == i:
-                cnt += 1
+        cnt += lst.count(i)
     print(cnt)
