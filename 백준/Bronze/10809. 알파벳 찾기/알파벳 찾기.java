@@ -6,19 +6,11 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        int[] arr = new int[26];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i]=-1;
-        }
+        StringBuilder st = new StringBuilder();
         String s = sc.next();
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if (arr[ch-'a']==-1) {
-                arr[ch-'a'] = i;
-            }
+        for (char ch = 'a';  ch<='z' ; ch++) {
+            st.append(s.indexOf(ch)+ " ");
         }
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        };
+        System.out.println(st);
     }
 }
