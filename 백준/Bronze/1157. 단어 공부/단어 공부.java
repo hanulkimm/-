@@ -1,41 +1,29 @@
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        int[] alphabet = new int[26];
-        String s = sc.next();
-        s = s.toLowerCase();
+        String str = sc.next().toUpperCase();
 
-        for (int i = 0; i < s.length(); i++) {
-//            System.out.println(s.charAt(i));
-            alphabet[s.charAt(i)-'0'-49]+=1;
+        int[] count = new int[26];
+        for (int i = 0; i < str.length(); i++) {
+            count[str.charAt(i)-'A'] += 1;
         }
+
         int max = 0;
-        for (int i = 0; i < alphabet.length; i++) {
-            if (max < alphabet[i]) {
-                max = alphabet[i];
+        char answer = '?';
+        for (int i = 0; i < count.length; i++) {
+            if (max<count[i]) {
+                max = count[i];
+                answer = (char)(i+'A');
+            } else if (max==count[i]) {
+                answer = '?';
             }
         }
-        int cnt = 0;
-        int ans = 0;
-        for (int i = 0; i < alphabet.length; i++) {
-            if (alphabet[i]==max) {
-                cnt += 1;
-                ans = i;
-            }
-        }
-        if (cnt>1) {
-            System.out.println("?");
-        } else {
-            String ch = String.valueOf((char) (ans+97));
-            ch = ch.toUpperCase();
-            System.out.println(ch);
-//            System.out.println((char)ans);
-        }
-        }
-
+        System.out.println(answer);
     }
+}
 
