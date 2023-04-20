@@ -14,7 +14,7 @@ public class Main {
 
             for (int j = 0; j < s.length(); j++) {
                 for (int k = s.indexOf(s.charAt(j)); k < s.lastIndexOf(s.charAt(j))+1; k++) {
-                    if (!Character.toString(s.charAt(k)).equals(Character.toString(s.charAt(j)))) {
+                    if (s.charAt(k)!=s.charAt(j)) {
                         flag =true;
                     }
                     if (flag) {break; }
