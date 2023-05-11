@@ -1,10 +1,10 @@
 # [level 3] 블록 이동하기 - 60063 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/60063) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/60063?language=python3) 
 
 ### 성능 요약
 
-메모리: 11.8 MB, 시간: 1364.00 ms
+메모리: 11.9 MB, 시간: 1229.87 ms
 
 ### 구분
 
