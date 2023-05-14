@@ -12,7 +12,7 @@ while q.qsize()>=2:
     ans += a+b
 print(ans)
 
-# heap
+# heapt
 from heapq import heappush, heappop
 n = int(input())
 heap = []
