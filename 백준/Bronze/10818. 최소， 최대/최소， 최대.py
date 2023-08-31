@@ -1,5 +1,3 @@
-import sys
-num = int(input())
-
-lst = list(map(int,sys.stdin.readline().split()))
+_ = int(input())
+lst = list(map(int, input().split()))
 print(min(lst), max(lst))
