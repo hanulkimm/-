@@ -1,8 +1,11 @@
 n = int(input())
 
-nums, count = 1,1
-while n > nums:
-    nums += 6 * count
-    count += 1
-
-print(count)
+if n==1:
+    print(1)
+else:
+    tmp = 1
+    for i in range(1,n):
+        tmp += 6*i
+        if n <= tmp:
+            print(i+1)
+            break
