@@ -1,22 +1,18 @@
-dct = {'(': ')', '[': ']'}
+dct = {'(':')', '[':']'}
 while True:
     st = input()
-    if st == '.':
+    if len(st)==1 and st=='.':
         break
-    else:
-        ans = 'yes'
-        stk = []
-        for ch in st:
-            if ch == '(' or ch == '[':
-                stk.append(dct[ch])
-            elif ch == ')' or ch == ']':
-                if stk:
-                    if stk[-1] == ch:
-                        stk.pop()
-                    else:
-                        ans = 'no'
-                else:
-                    ans = 'no'
-        if stk:
-            ans = 'no'
-        print(f'{ans}')
+    ans = 'yes'
+    stk = []
+    for i in st:
+        if i in ('(','['):
+            stk.append(dct[i])
+        elif i in (')', ']'):
+            if stk and stk[-1]==i:
+                stk.pop()
+            else:
+                ans='no'
+    if stk:
+        ans = 'no'
+    print(ans)
